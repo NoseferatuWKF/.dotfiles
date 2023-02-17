@@ -110,3 +110,9 @@ getPrivateKey() {
 	mkdir -p $HOME/.ssh;
 	mv id_rsa $HOME/.ssh/;
 }
+
+getPublicKey() {
+	curl 'https://raw.githubusercontent.com/NoseferatuWKF/ansible/master/secrets/peasant' | ansible-vault decrypt > id_rsa.pub;
+        mkdir -p $HOME/.ssh;
+        mv id_rsa.pub $HOME/.ssh/;
+}
