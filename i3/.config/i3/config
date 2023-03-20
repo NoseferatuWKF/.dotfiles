@@ -188,6 +188,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status --config ~/.config/i3/.i3status.conf
+        tray_output none
 }
 
 # class                 border  backgr. text    indicator child_border
