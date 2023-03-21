@@ -1,0 +1,61 @@
+# ALIAS
+
+alias vim="nvim"
+
+# ENV
+
+PATH="${HOME}/scripts:${PATH}"
+
+# HASH
+
+hash -d ansible=$HOME/ansible
+hash -d athena=$HOME/athena 
+hash -d dotfiles=$HOME/.dotfiles
+hash -d nvim=$HOME/.config/nvim
+hash -d wallpapers=$HOME/wallpapers
+
+# GIT
+
+tarik() {
+  git pull && git fetch -p
+}
+
+__git_local_branch_fzf() {
+  git branch -a | fzf | sed 's/remotes\/origin\///' | xargs
+}
+
+git_cd() {
+  git checkout $(__git_local_branch_fzf)
+}
+
+git_rm() {
+  git branch -D $(__git_local_branch_fzf)
+}
+
+# NPM
+npm_test() {
+  ls src/**/$1.* | entr -cr npm run test $1
+}
+
+# KUBECTL
+
+kubectl_exec() {
+  kubectl exec -it -n $1 $(kubectl get pods -n $1 --no-headers -o custom-columns=":metadata.name" | fzf) -- ash # maybe sh is better
+}
+
+kubectl_logs() {
+  kubectl logs -n $1 $(kubectl get pods -n $1 --no-headers -o custom-columns=":metadata.name" | fzf)
+}
+
+# SETUP
+
+if ! command -v fnm &> /dev/null
+then
+  echo "oh shit fnm is not installed"
+else
+  export PATH="~/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+  eval "$(fnm env --use-on-cd)"
+fi
+
+[[ ! -f ~/.zsetel ]] || source ~/.zsetel
