@@ -5,9 +5,21 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# persist history for auto-suggestions
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# keybinds
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
+
+# antibody
+[[ ! -f ~/.zsh_plugins.sh ]] && antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh 
 source ~/.zsh_plugins.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [[ ! -f ~/.zpersonal ]] || source ~/.zpersonal
+
