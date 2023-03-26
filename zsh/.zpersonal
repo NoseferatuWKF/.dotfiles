@@ -45,17 +45,33 @@ git_rm() {
 
 # NPM
 npm_test() {
-  ls src/**/$1.* | entr -cr npm run test $1
+  echo "What files to watch?"
+  read files
+  tmux splitw -v bash -c "find src | grep $files | entr -cr npm run test $files"
 }
 
 # KUBECTL
 
 kubectl_exec() {
-  kubectl exec -it -n $1 $(kubectl get pods -n $1 --no-headers -o custom-columns=":metadata.name" | fzf) -- ash # maybe sh is better
+  echo "What namespace?"
+  read namespace
+  tmux splitw -v "kubectl exec -it -n $namespace $(kubectl get pods -n $namespace --no-headers -o custom-columns=":metadata.name" | fzf) -- ash" # maybe sh is better
 }
 
 kubectl_logs() {
-  kubectl logs -n $1 $(kubectl get pods -n $1 --no-headers -o custom-columns=":metadata.name" | fzf)
+  echo "What namespace?"
+  read namespace
+  tmux splitw -v "kubectl logs -n $namespace $(kubectl get pods -n $namespace --no-headers -o custom-columns=":metadata.name" | fzf) | less"
+}
+
+kubectl_context() {
+  kubectl config use-context $(kubectl config get-contexts | fzf | awk '{print $1}' )
+}
+
+kubectl_search() {
+  echo "What namespace?"
+  read namespace
+  tmux splitw -v "kubectl get all -n $namespace | fzf"
 }
 
 # SETUP
