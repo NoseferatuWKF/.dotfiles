@@ -54,8 +54,7 @@ bindsym $sup+o exec obsidian
 bindsym $sup+c exec google-chrome
 
 # print screen
-bindsym $mod+p exec --no-startup-id maim "$HOME/Pictures/$(date)"
-bindsym $mod+Shift+p exec --no-startup-id maim --window $(xdotool getactivewindow) "$HOME/Pictures/$(date)"
+bindsym $mod+p exec --no-startup-id flameshot gui
 
 # kill focused window
 bindsym $mod+q kill
