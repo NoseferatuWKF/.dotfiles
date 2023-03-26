@@ -1,6 +1,8 @@
 # ALIAS
 
 alias vim="nvim"
+alias ll="ls -l"
+alias la="ls -la"
 
 # ENV
 
