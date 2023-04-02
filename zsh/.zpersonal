@@ -3,6 +3,7 @@
 alias vim="nvim"
 alias ll="ls -l"
 alias la="ls -la"
+alias nerd="sudo nerdctl"
 
 # ENV
 
@@ -44,6 +45,7 @@ git_rm() {
 }
 
 # NPM
+
 npm_test() {
   echo "What files to watch?"
   read files
@@ -65,7 +67,7 @@ kubectl_logs() {
 }
 
 kubectl_context() {
-  kubectl config use-context $(kubectl config get-contexts | fzf | awk '{print $1}' )
+  kubectl config use-context $(kubectl config get-contexts | grep -v NAME | fzf  | awk '{print $1}')
 }
 
 kubectl_search() {

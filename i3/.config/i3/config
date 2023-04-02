@@ -52,6 +52,8 @@ bindsym $sup+t exec i3-sensible-terminal
 # start application
 bindsym $sup+o exec obsidian
 bindsym $sup+c exec google-chrome
+bindsym $sup+shift+c exec google-chrome --user-data-dir=$HOME/.config/google-chrome/noseferatu
+bindsym $sup+shift+a exec google-chrome --user-data-dir=$HOME/.config/google-chrome/noseferatu --new-window https://chat.openai.com/chat
 
 # print screen
 bindsym $mod+p exec --no-startup-id flameshot gui
@@ -93,10 +95,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+Shift+h split h
+bindsym $mod+Shift+percent split h
 
 # split in vertical orientation
-# bindsym $mod+Shift+v split v
+bindsym $mod+Shift+apostrophe split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -107,7 +109,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
