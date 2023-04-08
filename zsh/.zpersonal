@@ -4,6 +4,7 @@ alias vim="nvim"
 alias ll="ls -l"
 alias la="ls -la"
 alias nerd="sudo nerdctl"
+alias xsc="xclip -selection c"
 
 # ENV
 

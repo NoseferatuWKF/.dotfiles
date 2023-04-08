@@ -5,10 +5,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# persist history for auto-suggestions
+# history
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000
+SAVEHIST=1000
+
+setopt hist_ignore_all_dups
+
+# do not include fail commands in history
+zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
+
+zshaddhistory
 
 # keybinds
 bindkey "^[[1;5C" forward-word
