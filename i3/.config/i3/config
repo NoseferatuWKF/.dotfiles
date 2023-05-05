@@ -95,10 +95,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+Shift+percent split h
+bindsym $mod+minus split h
 
 # split in vertical orientation
-bindsym $mod+Shift+apostrophe split v
+bindsym $mod+bar split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -201,6 +201,10 @@ bar {
 # class                 border  backgr. text    indicator child_border
 client.focused          #000000 #000000 #ffffff #2e9ef4   #777777
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+
+# hide window title
+default_border pixel 1
+default_floating_border pixel 1
 
 hide_edge_borders smart
 

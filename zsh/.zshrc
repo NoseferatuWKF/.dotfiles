@@ -10,7 +10,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 
-setopt hist_ignore_all_dups
+setopt histignorealldups
 
 # do not include fail commands in history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
@@ -29,4 +29,3 @@ source ~/.zsh_plugins.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [[ ! -f ~/.zpersonal ]] || source ~/.zpersonal
-

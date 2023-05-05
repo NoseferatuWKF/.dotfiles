@@ -1,0 +1,25 @@
+[alias]
+	ls = log --oneline
+	pp = !git pull && git fetch -p
+	caa = commit -a --amend -C @
+	last = log -1 @ --stat
+	lc = config --local -l
+	# sed does not support perl regex
+	cd = "!f() {\
+		git checkout $(git branch -a | fzf | perl -pe 's/\\w*\\/\\w*\\///'); \
+	}; f"
+	rmb = "!f() {\
+		git branch -D $(git branch -a | fzf | perl -pe 's/\\w*\\/\\w*\\///'); \
+	}; f"
+	rmm = "!f() {\
+		git branch --merged @ | grep -v $(git branch --show-current) | xargs -r git branch -d; \
+	}; f"
+	hd = "!f() {\
+		git diff $(git log --oneline | fzf | awk '{print $1}'); \
+	}; f"
+[core]
+	editor = /usr/local/bin/nvim
+[user]
+	email = farouq.ahmed@setel.com
+	name = Wan Kamal
+
