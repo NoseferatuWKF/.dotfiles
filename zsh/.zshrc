@@ -29,3 +29,5 @@ source ~/.zsh_plugins.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [[ ! -f ~/.zpersonal ]] || source ~/.zpersonal
+
+[[ ! -f ~/.zarch ]] || source ~/.zarch
