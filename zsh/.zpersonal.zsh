@@ -72,7 +72,3 @@ kubectl_search() {
   read namespace
   tmux splitw -v "kubectl get all -n $namespace | fzf"
 }
-
-# SETUP
-
-[[ ! -f ~/.zsetel ]] || source ~/.zsetel

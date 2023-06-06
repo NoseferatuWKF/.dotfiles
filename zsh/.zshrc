@@ -28,6 +28,8 @@ source ~/.zsh_plugins.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-[[ ! -f ~/.zpersonal ]] || source ~/.zpersonal
+[[ ! -f ~/.zpersonal.zsh ]] || source ~/.zpersonal.zsh
 
-[[ ! -f ~/.zarch ]] || source ~/.zarch
+[[ ! -f ~/.zarch.zsh ]] || source ~/.zarch.zsh
+
+[[ ! -f ~/.zsetel.zsh ]] || source ~/.zsetel.zsh
