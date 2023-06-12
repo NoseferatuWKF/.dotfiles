@@ -1,3 +1,4 @@
+# TODO: cherry-pick
 [alias]
 	ls = log --oneline
 	pp = !git pull --rebase && git fetch -p
@@ -27,12 +28,12 @@
 		git revert $(git ls | fzf | awk '{print $1}'); \
 	}; f"
 	playground = "!f() {\
-		echo -e '\\x1b[1;33minitialized git playground\\x1b[0m'; \
+		echo '\\x1b[1;33minitialized git playground'; \
 		git init -q playground; \
-		git init -q --bare playground-remote; \
-		git -C playground remote add origin ../playground-remote; \
+		git init -q --bare local-remote; \
+		git -C playground remote add origin ../local-remote; \
 	}; f"
 [user]
-	email = wkf2584@gmail.com
-	name = NoseferatuWKF
+	email = farouq.ahmed@setel.com
+	name = wankamalfarouq
 

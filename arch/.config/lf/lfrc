@@ -26,6 +26,11 @@ set scrolloff 10
 # Use the `dim` attribute instead of underline for the cursor in the preview pane
 set cursorpreviewfmt "\033[7;2m"
 
+# Custom defaults
+set hidden
+set info size:time
+set relativenumber
+
 # use enter for shell commands
 map <enter> shell
 
@@ -63,7 +68,7 @@ map a :push %mkdir<space>
 
 # move current file or selected files to trash folder
 # (also see 'man mv' for backup/overwrite options)
-cmd trash %set -f; mv $fx ~/.trash
+# cmd trash %set -f; mv $fx ~/.trash
 
 # define a custom 'delete' command
 # cmd delete ${{
@@ -108,4 +113,27 @@ cmd zip ${{
     cp -r $fx $1
     zip -r $1.zip $1
     rm -rf $1
+}}
+
+cmd encrypt ${{
+    set -f
+    ansible-vault encrypt $fx
+}}
+
+cmd decrypt ${{
+    set -f
+    ansible-vault decrypt $fx
+}}
+
+cmd remove ${{
+    set -f
+    rm -rf $fx
+}}
+
+cmd share ${{
+    set -f
+    mkdir -p share 
+    cp -r $fx share
+    wormhole send share
+    rm -rf share
 }}

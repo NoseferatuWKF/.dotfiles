@@ -29,10 +29,18 @@
 	playground = "!f() {\
 		echo -e '\\x1b[1;33minitialized git playground\\x1b[0m'; \
 		git init -q playground; \
-		git init -q --bare playground-remote; \
-		git -C playground remote add origin ../playground-remote; \
+		git init -q --bare local-remote; \
+		git -C playground remote add origin ../local-remote; \
 	}; f"
 [user]
-	email = wkf2584@gmail.com
-	name = NoseferatuWKF
-
+	email = Wan.WanAhmed@theaccessgroup.com
+	name = wkf-unleashed
+[merge]
+	ff = false
+[core]
+	longpass = true
+	autocrlf = true
+[pull]
+	rebase = true
+[rebase]
+	autostash = true

@@ -1,0 +1,50 @@
+set showmode
+set timeout
+set timeoutlen=300
+
+" Navigation
+set number
+set relativenumber
+set scrolloff=10
+
+" Search
+set smartcase
+set ignorecase
+set nowrapscan
+
+" Set leader key
+let mapleader=" "
+
+" Plugins
+set surround
+set commentary
+set highlightedyank
+
+" Remove suffering
+nnoremap Q <nop>
+nnoremap <Space> <nop>
+vnoremap <Space> <nop>
+nnoremap J mzJ`z
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap H Hzz
+nnoremap M Mzz
+nnoremap L Lzz
+
+" Productivity
+vnoremap J :m'>+1<CR>gv=gv
+vnoremap K :m'<-2<CR>gv=gv
+
+" IDE actions
+map gd <Action>(GotoDeclaration)
+map gr <Action>(FindUsages)
+map gI <Action>(GotoImplementation)
+map <leader>sf <Action>(GotoFile)
+map <leader>ff <Action>(FileStructurePopup)
+map <leader>rn <Action>(RenameElement)
+map <leader>zz <Action>(ToggleDistractionFreeMode)
+map <leader>e <Action>(ShowErrorDescription)
+map <leader>bb <Action>(ToggleLineBreakpoint)
+map [e <Action>(GotoNextError)
