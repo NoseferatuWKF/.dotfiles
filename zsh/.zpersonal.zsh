@@ -1,6 +1,7 @@
 # ALIAS
 
 alias vim="nvim"
+alias ls="ls --color=auto"
 alias ll="ls -l"
 alias lr="ls -lr"
 alias la="ls -lah"
@@ -13,6 +14,7 @@ alias xsc="xclip -selection c"
 PATH="${HOME}/scripts:${PATH}"
 
 # SECRETS
+
 EMAIL=$(cat << EOF
 \$ANSIBLE_VAULT;1.1;AES256
 61663033303632373833393239346138366661343038386539346437323139306162343462343931
