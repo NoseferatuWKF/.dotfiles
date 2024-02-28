@@ -20,14 +20,7 @@ bindkey "^E" end-of-line
 [[ ! -f ~/.zsh_plugins.sh ]] && antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh 
 source ~/.zsh_plugins.sh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-[[ ! -f ~/.zpersonal.zsh ]] || source ~/.zpersonal.zsh
-
-[[ ! -f ~/.zarch.zsh ]] || source ~/.zarch.zsh
-
-[[ ! -f ~/.zsetel.zsh ]] || source ~/.zsetel.zsh
+[[ ! -f ~/.zaccess.zsh ]] || source ~/.zaccess.zsh
 
 [ ! command -v nvim &> /dev/null ] || export EDITOR=nvim
 
