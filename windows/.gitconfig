@@ -1,46 +1,65 @@
 [alias]
-	ls = log --oneline
 	pp = !git pull --rebase && git fetch -p
 	po = !git push -u origin @
 	caa = commit -a --amend -C @
-	last = log -1 @ --stat
+	last = log -1 @ --stat -p
 	lc = config --local -l
+	ls = "!f() {\
+		git log --oneline | fzf --preview 'git show --color=always {1}' \
+		--bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down'; \
+		}; f"
 	cd = "!f() {\
-		git checkout $(git branch -a | fzf | perl -pe 's/\\w*\\/\\w*\\///'); \
-	}; f"
+		git branch -a | fzf --preview 'git show --color=always {-1}' \
+		--bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down' | \
+		perl -pe 's/\\w*\\/\\w*\\///' | xargs -r git checkout; \
+		}; f"
 	rmb = "!f() {\
-		git branch -D $(git branch -a | fzf -m | perl -pe 's/\\w*\\/\\w*\\///'); \
-	}; f"
+		git branch -a | fzf --preview 'git show --color=always {-1}' \
+		--bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down' -m | \
+		perl -pe 's/\\w*\\/\\w*\\///' | xargs -r git branch -D; \
+		}; f"
 	rmm = "!f() {\
-		git branch --merged @ | grep -v $(git branch --show-current) | xargs -r git branch -d; \
-	}; f"
+		git branch --merged @ | grep -v $(git branch --show-current) | \
+		xargs -r git branch -d; \
+		}; f"
 	hd = "!f() {\
-		git diff $(git ls | fzf | awk '{print $1}'); \
-	}; f"
+		git ls | awk '{print $1}' | xargs -r git diff; \
+		}; f"
 	rsh = "!f() {\
-		git reset $(git ls | fzf | awk '{print $1}'); \
-	}; f"
+		git ls | awk '{print $1}' | xargs -r git reset; \
+		}; f"
 	rih = "!f() {\
-		git rebase -i $(git ls | fzf | awk '{print $1}'); \
-	}; f"
-	rvh = "!f() {\
-		git revert $(git ls | fzf | awk '{print $1}'); \
-	}; f"
+		git ls | awk '{print $1}' | xargs -r git rebase -i; \
+		}; f"
 	playground = "!f() {\
 		echo -e '\\x1b[1;33minitialized git playground\\x1b[0m'; \
 		git init -q playground; \
-		git init -q --bare local-remote; \
-		git -C playground remote add origin ../local-remote; \
-	}; f"
+		git init -q --bare playground-remote; \
+		git -C playground remote add origin ../playground-remote; \
+		}; f"
 [user]
 	email = Wan.WanAhmed@theaccessgroup.com
 	name = wkf-unleashed
 [merge]
 	ff = false
+	conflictstyle = diff3
 [core]
 	longpass = true
 	autocrlf = true
+	editor = nvim
+	excludesfile = ~/.gitignore
+	pager = delta
 [pull]
 	rebase = true
 [rebase]
 	autostash = true
+[rerere]
+	enabled = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = false
+[diff]
+	colorMoved = default

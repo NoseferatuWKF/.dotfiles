@@ -36,6 +36,9 @@ nnoremap L Lzz
 " Productivity
 vnoremap J :m'>+1<CR>gv=gv
 vnoremap K :m'<-2<CR>gv=gv
+nnoremap <C-n> :bp<CR>
+nnoremap <C-p> :bn<CR>
+nnoremap <C-x> :bd<CR>
 
 " IDE actions
 map gd <Action>(GotoDeclaration)
