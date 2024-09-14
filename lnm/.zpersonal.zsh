@@ -7,8 +7,6 @@ alias ll="ls -l"
 alias lr="ls -lr"
 alias la="ls -lah"
 alias lar="ls -lahr"
-alias nerd="sudo nerdctl"
-alias xsc="xclip -selection c"
 alias diff="diff --color=always"
 
 # ENV

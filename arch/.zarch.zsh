@@ -4,7 +4,7 @@ wifi_on() {
 }
 
 if [[ "$(tty)" = "/dev/tty1" ]]; then
-  # wifi_on && \
+  wifi_on && \
   pgrep -x dwm > /dev/null || startx
 fi
 
