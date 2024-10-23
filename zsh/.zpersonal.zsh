@@ -106,3 +106,9 @@ kubectl_search() {
   read namespace
   tmux splitw -v "kubectl get all -n $namespace | fzf"
 }
+
+create_password() {
+  local LENGTH="21"
+  local CHAR="!-z"
+  echo $(LC_ALL=C tr -dc $CHAR < /dev/urandom | head -c $LENGTH)
+}

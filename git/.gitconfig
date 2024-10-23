@@ -5,25 +5,29 @@
 	last = log -1 @ --stat
 	lc = config --local -l
 	ls = "!f() {\
-		git log --oneline | fzf --preview 'git show --color=always {1}' \
+		git log --oneline | fzf --preview 'git show {1} | delta' \
 		--bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down'; \
 		}; f"
-	cd = "!f() {\
-		git branch -a | fzf --preview 'git show --color=always {-1}' \
+	bls = "!f() {\
+		git branch -a | fzf --preview 'git show {-1} | delta' \
 		--bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down' | \
-		perl -pe 's/\\w*\\/\\w*\\///' | xargs -r git checkout; \
+		sed 's/\\*//' | awk '{print $1}'; \
+		}; f"
+	cd = "!f() {\
+		git bls | xargs -r basename | xargs -r git checkout; \
 		}; f"
 	rmb = "!f() {\
-		git branch -a | fzf --preview 'git show --color=always {-1}' \
-		--bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down' -m | \
-		perl -pe 's/\\w*\\/\\w*\\///' | xargs -r git branch -D; \
+		git bls | xargs -r basename | xargs -r git branch -D; \
 		}; f"
 	rmm = "!f() {\
 		git branch --merged @ | grep -v $(git branch --show-current) | \
 		xargs -r git branch -d; \
 		}; f"
 	hd = "!f() {\
-		git ls | awk '{print $1}' | xargs -r git diff; \
+		git diff $(git ls | awk '{print $1}') $(git ls | awk '{print $1}'); \
+		}; f"
+	bd = "!f() {\
+		git diff $(git bls | xargs -r basename) $(git bls | xargs -r basename); \
 		}; f"
 	rsh = "!f() {\
 		git ls | awk '{print $1}' | xargs -r git reset; \
