@@ -21,8 +21,7 @@ bindkey "^E" end-of-line
 source ~/.zsh_plugins.sh
 
 [[ ! -f ~/.zpersonal.zsh ]] || source ~/.zpersonal.zsh
-
-[[ ! -f ~/.zarch.zsh ]] || source ~/.zarch.zsh
+[[ ! -f ~/.secrets.env ]] || source ~/.secrets.env
 
 [ ! command -v nvim &> /dev/null ] || export EDITOR=nvim
 
