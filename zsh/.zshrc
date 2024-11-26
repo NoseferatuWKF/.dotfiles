@@ -5,9 +5,8 @@ SAVEHIST=1000
 
 setopt histignorealldups
 
-# do not include fail commands in history
+# do not include failed commands in history
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
-
 zshaddhistory
 
 # keybinds

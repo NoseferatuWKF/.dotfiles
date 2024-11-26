@@ -1,8 +1,3 @@
-if [[ "$(tty)" = "/dev/tty1" ]]; then
-  wifi_on && \
-  pgrep -x dwm > /dev/null || startx
-fi
-
 # ALIAS
 
 alias vim="nvim"
@@ -18,7 +13,7 @@ alias diff="diff --color=always"
 
 # ENV
 
-PATH="${HOME}/scripts:${PATH}"
+PATH="$HOME/scripts:$HOME/.cargo/bin:$PATH"
 
 # HASH
 
@@ -49,3 +44,9 @@ wifi_on() {
   sudo wpa_supplicant -B -i wlp2s0 -c /etc/wpa_supplicant/wpa_supplicant.conf
   sudo dhcpcd wlp2s0
 }
+
+if [[ "$(tty)" = "/dev/tty1" ]]; then
+  wifi_on && \
+  pgrep -x dwm > /dev/null || startx
+fi
+
