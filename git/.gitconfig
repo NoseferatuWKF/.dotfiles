@@ -5,12 +5,12 @@
 	last = log -1 @ --stat
 	lc = config --local -l
 	ls = "!f() {\
-		git log --oneline | fzf --preview 'git show {1} | delta' \
-		--bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down'; \
+		git log --oneline | fzf --tmux 100% --preview 'git show {1} | delta' \
+		--bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down,alt-d:first,alt-u:last'; \
 		}; f"
 	bls = "!f() {\
-		git branch -a | fzf --preview 'git show {-1} | delta' \
-		--bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down' | \
+		git branch -a | fzf --tmux 100% --preview 'git show {-1} | delta' \
+		--bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' | \
 		sed 's/\\*//' | awk '{print $1}'; \
 		}; f"
 	cd = "!f() {\
@@ -36,7 +36,7 @@
 		git ls | awk '{print $1}' | xargs -r git rebase -i; \
 		}; f"
 	rvh = "!f() {\
-		git ls | fzf | awk '{print $1}' | xargs -r git revert; \
+		git ls | fzf --tmux 100% | awk '{print $1}' | xargs -r git revert; \
 	}; f"
 	playground = "!f() {\
 		echo -e '\\x1b[1;33minitialized git playground\\x1b[0m'; \
