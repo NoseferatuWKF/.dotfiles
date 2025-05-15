@@ -26,3 +26,6 @@ source ~/.zsh_plugins.sh
 
 # oh-my-posh
 eval "$(oh-my-posh init zsh --config ~/peru.omp.json)"
+
+# add Pulumi to the PATH
+export PATH=$PATH:/home/wkf/.pulumi/bin

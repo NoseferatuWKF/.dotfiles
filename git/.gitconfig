@@ -6,18 +6,20 @@
 	lc = config --local -l
 	ls = "!f() {\
 		git log --oneline | fzf --tmux 100% --preview 'git show {1} | delta' \
-		--bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down,alt-d:first,alt-u:last'; \
+		--bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down,alt-d:first,alt-u:last' \
+		--preview-window 'wrap'; \
 		}; f"
 	bls = "!f() {\
 		git branch -a | fzf --tmux 100% --preview 'git show {-1} | delta' \
-		--bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' | \
+		--bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' \
+		--preview-window 'wrap' | \
 		sed 's/\\*//' | awk '{print $1}'; \
 		}; f"
 	cd = "!f() {\
-		git bls | xargs -r basename | xargs -r git checkout; \
+		git bls | perl -pe 's/remotes\\/.*?\\///' | xargs -r git checkout; \
 		}; f"
 	rmb = "!f() {\
-		git bls | xargs -r basename | xargs -r git branch -D; \
+		git bls | perl -pe 's/remotes\\/.*?\\///' | xargs -r git branch -D; \
 		}; f"
 	rmm = "!f() {\
 		git branch --merged @ | grep -v $(git branch --show-current) | \
@@ -27,7 +29,7 @@
 		git diff $(git ls | awk '{print $1}') $(git ls | awk '{print $1}'); \
 		}; f"
 	bd = "!f() {\
-		git diff $(git bls | xargs -r basename) $(git bls | xargs -r basename); \
+		git diff $(git bls | perl -pe 's/remotes\\/.*?\\///') $(git bls | perl -pe 's/remotes\\/.*?\\///'); \
 		}; f"
 	rsh = "!f() {\
 		git ls | awk '{print $1}' | xargs -r git reset; \
@@ -36,7 +38,7 @@
 		git ls | awk '{print $1}' | xargs -r git rebase -i; \
 		}; f"
 	rvh = "!f() {\
-		git ls | fzf --tmux 100% | awk '{print $1}' | xargs -r git revert; \
+		git ls | awk '{print $1}' | xargs -r git revert; \
 	}; f"
 	playground = "!f() {\
 		echo -e '\\x1b[1;33minitialized git playground\\x1b[0m'; \
@@ -47,8 +49,8 @@
 [rerere]
 	enabled = true
 [user]
-	email = wkf2584@gmail.com
-	name = NoseferatuWKF
+	email = kamalfarouq_ahmed@persolkelly.com
+	name = WKF
 [core]
 	pager = delta
 [interactive]
@@ -56,7 +58,7 @@
 [delta]
 	navigate = true
 	line-numbers = true
-	side-by-side = true
+	side-by-side = false
 [merge]
 	conflictstyle = diff3
 [diff]
