@@ -27,5 +27,8 @@ source ~/.zsh_plugins.sh
 # oh-my-posh
 eval "$(oh-my-posh init zsh --config ~/peru.omp.json)"
 
-# add Pulumi to the PATH
-export PATH=$PATH:/home/wkf/.pulumi/bin
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi
