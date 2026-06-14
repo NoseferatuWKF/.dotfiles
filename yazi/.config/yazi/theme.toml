@@ -4,63 +4,70 @@
 
 # vim:fileencoding=utf-8:foldmethod=marker
 
+
 # : Manager {{{
 
-[mgr]
-cwd = { fg = "cyan" }
-
-# Hovered
-hovered         = { fg = "black", bg = "lightblue" }
-preview_hovered = { underline = true }
+	[mgr]
+	cwd = { fg = "cyan" }
 
 # Find
-find_keyword  = { fg = "yellow", italic = true }
-find_position = { fg = "magenta", bg = "reset", italic = true }
+	find_keyword  = { fg = "yellow", italic = true }
+	find_position = { fg = "magenta", bg = "reset", italic = true }
 
 # Marker
-marker_copied   = { fg = "lightgreen",  bg = "lightgreen" }
-marker_cut      = { fg = "lightred",    bg = "lightred" }
-marker_marked   = { fg = "lightyellow", bg = "lightyellow" }
-marker_selected = { fg = "lightblue",   bg = "lightblue" }
+	marker_copied   = { fg = "lightgreen",  bg = "lightgreen" }
+	marker_cut      = { fg = "lightred",    bg = "lightred" }
+	marker_marked   = { fg = "lightyellow", bg = "lightyellow" }
+	marker_selected = { fg = "lightblue",   bg = "lightblue" }
 
 # Tab
-tab_active   = { fg = "#ffffff", bg = "#5fafd7" }
-tab_inactive = { fg = "#ffffff", bg = "#000000" }
-tab_width    = 1
+	tab_active   = { fg = "#ffffff", bg = "#5fafd7" }
+	tab_inactive = { fg = "#ffffff", bg = "#000000" }
+	tab_width    = 1
 
 # Border
-border_symbol = "│"
-border_style  = { fg = "gray" }
+	border_symbol = "│"
+	border_style  = { fg = "gray" }
 
 # Highlighting
-syntect_theme = ""
+	syntect_theme = ""
 
 # : }}}
 
 
+# : Indicator {{{
+	[indicator]
+	parent         = { fg = "black", bg = "cyan", bold = true }
+	current        = { fg = "black", bg = "cyan", bold = true }
+	padding        = { open = ">", close = " " }
+
+# }}}
+
+
 # : Status {{{
 
-[status]
-separator_open  = ""
-separator_close = ""
-separator_style = { fg = "#5fafd7", bg = "#5fafd7" }
+	[status]
+		sep_left  = { open = "", close = "" }
+		sep_right = { open = "", close = "" }
+		separator_style = { fg = "#5fafd7", bg = "#5fafd7" }
 
 # Mode
-mode_normal = { fg = "#ffffff", bg = "#101010", bold = true }
-mode_select = { fg = "#ffffff", bg = "#101010", bold = true }
-mode_unset  = { fg = "#ffffff", bg = "#101010", bold = true }
+	[mode]
+	normal_main = { fg = "#000000", bg = "#5fafd7", bold = true }
+	select_main = { fg = "#000000", bg = "#5fafd7", bold = true }
+	unset_main  = { fg = "#000000", bg = "#5fafd7", bold = true }
 
 # Progress
-progress_label  = { bold = true }
-progress_normal = { fg = "blue", bg = "black" }
-progress_error  = { fg = "red", bg = "black" }
+	progress_label  = { bold = true }
+	progress_normal = { fg = "blue", bg = "black" }
+	progress_error  = { fg = "red", bg = "black" }
 
 # Permissions
-permissions_t = { fg = "#ffffff" }
-permissions_r = { fg = "#ffffff" }
-permissions_w = { fg = "#ffffff" }
-permissions_x = { fg = "#ffffff" }
-permissions_s = { fg = "#ffffff" }
+	permissions_t = { fg = "#ffffff" }
+	permissions_r = { fg = "#ffffff" }
+	permissions_w = { fg = "#ffffff" }
+	permissions_x = { fg = "#ffffff" }
+	permissions_s = { fg = "#ffffff" }
 
 # : }}}
 

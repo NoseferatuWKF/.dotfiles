@@ -59,7 +59,9 @@ kubectl_search() {
 generate_password() {
     local LENGTH="20"
     local CHAR="0-9a-zA-Z"
-    LC_ALL=C echo $(tr -dc $CHAR < /dev/urandom | head -c $LENGTH)
+    export LC_ALL=C
+    echo $(tr -dc $CHAR < /dev/urandom | head -c $LENGTH)
+    unset LC_ALL
 }
 
 ya() {
@@ -71,30 +73,29 @@ ya() {
     rm -f -- "$tmp"
 }
 
-goportal() {
-    local project=~/projects/psk/goportal/src/GoPortal
+psl() {
     local cmd=$1
-    [[ $cmd == serve ]] && _goportal_serve $project
-    [[ $cmd == debug ]] && _goportal_debug $project
-    [[ $cmd == test ]] && _goportal_test $2
-    [[ $cmd == compose ]] && finch compose -f ~/projects/utils/apac-obm/grafana/docker-compose.yml --env-file ~/projects/utils/apac-obm/.env ${@:2}
-    [[ $cmd == make ]] && make -sC ~/projects/utils/make ${@:2}
+    # [[ $cmd == serve ]] && _goportal_serve $project
+    # [[ $cmd == debug ]] && _goportal_debug $project
+    # [[ $cmd == test ]] && _goportal_test $2
+    [[ $cmd == compose ]] && finch compose -f ~/projects/persol/apac-obm/grafana/docker-compose.yml --env-file ~/projects/persol/apac-obm/grafana/.env ${@:2}
+    # [[ $cmd == make ]] && make -sC ~/projects/persol/make ${@:2}
 }
 
-_goportal_serve() {
-    tmux neww dotnet watch -c Release -nr:false --environment Local --project $1
-    tmux split -h npm run --prefix ~/projects/psk/goportal/src/GoPortal/Webpack build:watch
-    # tmux split python -m http.server -d ~/projects/utils/scalar/
-}
-
-_goportal_debug() {
-    tmux neww -c $1/bin/Debug/net8.0 \
-    "DOTNET_URLS=\"https://localhost:7188;http://localhost:5153\" \\
-    ASPNETCORE_ENVIRONMENT=Development dotnet GoPortal.dll --environment Local"
-}
-
-_goportal_test() {
-    local target="GoPortal.UnitTest.WebAPI"
-    [[ $1 ]] && target=$1
-    dotnet test -c Release ~/projects/psk/goportal/src/GoPortalSolution.sln -property:WarningLevel=0 --filter DisplayName~$target
-}
+# _goportal_serve() {
+#     tmux neww dotnet watch -c Release -nr:false --environment Local --project $1
+#     tmux split -h npm run --prefix ~/projects/psk/goportal/src/GoPortal/Webpack build:watch
+#     # tmux split python -m http.server -d ~/projects/persol/scalar/
+# }
+#
+# _goportal_debug() {
+#     tmux neww -c $1/bin/Debug/net8.0 \
+#     "DOTNET_URLS=\"https://localhost:7188;http://localhost:5153\" \\
+#     ASPNETCORE_ENVIRONMENT=Development dotnet GoPortal.dll --environment Local"
+# }
+#
+# _goportal_test() {
+#     local target="GoPortal.UnitTest.WebAPI"
+#     [[ $1 ]] && target=$1
+#     dotnet test -c Release ~/projects/psk/goportal/src/GoPortalSolution.sln -property:WarningLevel=0 --filter DisplayName~$target
+# }
